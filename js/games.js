@@ -1,7 +1,6 @@
 var buttonColors = ["red", "blue", "green", "yellow"];
 
 var gamePattern = [];
-
 var  userClickedPattern = [];
 
 var started = false;
@@ -13,19 +12,20 @@ $(document).keypress(function() {
     nextSequence();
     started = true;
   }
-})
-
+});
 
 $(".btn").click(function() {
+
   var userChosenColor = $(this).attr("id");
   userClickedPattern.push(userChosenColor);
-  playSound(UserChosenColor);
-  animatePress(UserChosenColor);
+  playSound(userChosenColor);
+  animatePress(userChosenColor);
 
   checkAnswer(userClickedPattern.length-1);
 });
 
 function checkAnswer(currentLevel) {
+
   if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
     if (userClickedPattern.length === gamePattern.length) {
       setTimeout(function() {
@@ -65,12 +65,12 @@ function animatePress(currentColor) {
 }
 
 function playSound(name) {
-  var audio = new Audio("sounds/" + randomChosenColor + ".mp3");
+  var audio = new Audio("sounds/" + name + ".mp3");
   audio.play();
 }
 
 function startOver() {
-  level=0;
+  level = 0;
   gamePattern = [];
   started = false;
 }
